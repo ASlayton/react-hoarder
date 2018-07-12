@@ -2,8 +2,9 @@ import React from 'react';
 import {Route, BrowserRouter, Redirect, Switch}  from 'react-router-dom';
 import firebase from 'firebase';
 import Navbar from '../components/Navbar/Navbar';
+import fbConnection from '../firebaseRequests/connection';
 import './App.css';
-
+fbConnection();
 class App extends React.Component {
   state={
     authed: false,

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import authRequests from '../../firebaseRequests/auth';
 import './Navbar.css';
 
-class Navbar extends React.Compnent {
+class Navbar extends React.Component {
   render () {
     const {authed, runAway} = this.props;
     const logoutClickEvent = () => {
@@ -29,7 +29,7 @@ class Navbar extends React.Compnent {
                 authed ? (
                   <ul className="nav navbar-nav navbar-right">
                     <li>
-                      <Link to="/inventory">ALL THE THINGS!</Link>
+                      <Link to="/allTheThings">ALL THE THINGS!</Link>
                     </li>
                     <li>
                       <Link to="/myStuff">My Stuff</Link>
