@@ -1,19 +1,44 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import {Route, BrowserRouter, Redirect, Switch}  from 'react-router-dom';
+import firebase from 'firebase';
+import Navbar from '../components/Navbar/Navbar';
+import fbConnection from '../firebaseRequests/connection';
 import './App.css';
+fbConnection();
+class App extends React.Component {
+  state={
+    authed: false,
+  };
 
-class App extends Component {
+  componentDidMount () {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({authed: true});
+      } else {
+        this.setState({authed: false});
+      }
+    });
+  };
+
+  componentWillUnmount () {
+    this.removeListener();
+  };
+
+  runAway = () => {
+    this.setState({authed: false});
+  };
+
   render () {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <button className='btn btn-danger'>Bootstrap?</button>
+        <BrowserRouter>
+          <div>
+            <Navbar
+              authed={this.state.authed}
+              runAway={this.runAway}
+            />
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
