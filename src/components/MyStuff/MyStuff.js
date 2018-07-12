@@ -4,7 +4,8 @@ import './MyStuff.css';
 class MyStuff extends React.Component {
   render () {
     return (
-      <div>My Stuff</div>
+      <div>My Stuff
+      </div>
     );
   }
 }

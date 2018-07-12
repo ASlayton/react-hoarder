@@ -17,7 +17,7 @@ class Register extends React.Component {
     authRequests
       .registerUser(user)
       .then(() => {
-        this.props.history.push('/myStuff');
+        this.props.history.push('/AllTheThings');
       })
       .catch(error => {
         console.error('there was an error in registering', error);

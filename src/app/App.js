@@ -76,26 +76,26 @@ class App extends React.Component {
               authed={this.state.authed}
               runAway={this.runAway}
             />
-          </div>
-          <div className="main-container">
-            <Switch>
-              <Route path="/" exact component={Home} />
-              <PrivateRoute
-                path="/myStuff"
-                authed={this.state.authed}
-                component={MyStuff}
-              />
-              <PublicRoute
-                path="/register"
-                authed={this.state.authed}
-                component={Register}
-              />
-              <PublicRoute
-                path="/login"
-                authed={this.state.authed}
-                component={Login}
-              />
-            </Switch>
+            <div className="main-container">
+              <Switch>
+                <Route path="/" exact component={Home} />
+                <PrivateRoute
+                  path="/myStuff"
+                  authed={this.state.authed}
+                  component={MyStuff}
+                />
+                <PublicRoute
+                  path="/register"
+                  authed={this.state.authed}
+                  component={Register}
+                />
+                <PublicRoute
+                  path="/login"
+                  authed={this.state.authed}
+                  component={Login}
+                />
+              </Switch>
+            </div>
           </div>
         </BrowserRouter>
       </div>
