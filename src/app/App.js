@@ -8,6 +8,7 @@ import MyStuff from '../components/MyStuff/MyStuff';
 import Register from '../components/Register/Register';
 import Login from '../components/Login/Login';
 import './App.css';
+import AllTheThings from '../components/AllTheThings/AllTheThings';
 fbConnection();
 
 const PrivateRoute = ({ component: Component, authed, ...rest}) => {
@@ -19,7 +20,7 @@ const PrivateRoute = ({ component: Component, authed, ...rest}) => {
           <Component {...props} />
         ) : (
           <Redirect
-            to={{ pathname: '/MyStuff', state: {from: props.location}}}
+            to={{ pathname: '/Home', state: {from: props.location}}}
           />
         )
       }
@@ -36,7 +37,7 @@ const PublicRoute = ({ component: Component, authed, ...rest}) => {
           <Component {...props} />
         ) : (
           <Redirect
-            to={{ pathname: '/allTheThings', state: {from: props.location}}}
+            to={{ pathname: '/Home', state: {from: props.location}}}
           />
         )
       }
@@ -83,6 +84,11 @@ class App extends React.Component {
                   path="/myStuff"
                   authed={this.state.authed}
                   component={MyStuff}
+                />
+                <PrivateRoute
+                  path="/AllTheThings"
+                  authed={this.state.authed}
+                  component={AllTheThings}
                 />
                 <PublicRoute
                   path="/register"
