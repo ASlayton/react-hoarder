@@ -1,62 +1,56 @@
 import React from 'react';
-import myStuffRequest from '../../firebaseRequests/myStuff';
-import authRequests from '../../firebaseRequests/auth';
+import myStuffRequests from '../../firebaseRequests/myStuff';
 import './MyStuff.css';
+import authRequest from '../../firebaseRequests/auth';
+import Item from '../Item/Item';
 
-class MyStuff extends React.Component {
+class AllMyStuff extends React.Component {
+
   state = {
     myStuff: [],
   }
-
+  saveMyStuff = () => {
+    const newItem = {items: {...this.state.myStuff}};
+    newItem.uid = authRequest.getUid();
+    myStuffRequests
+      .postRequest(newItem)
+      .then(() => {
+        this.props.history.push('/items');
+      })
+      .catch((err) => {
+        console.error('error in newItem post', err);
+      });
+  };
   componentDidMount () {
-    myStuffRequest
-      .getRequest(authRequests.getUid())
+    const myUid = authRequest.getUid();
+    myStuffRequests
+      .getRequest(myUid)
       .then((myStuff) => {
         this.setState({myStuff});
       })
       .catch((err) => {
-        console.error('Error with My Stuff request', err);
+        console.error('error with myStuffRequests get', err);
       });
   }
-
-  renderStuff = (key) => {
-    const item = this.props.items.find(x => x.id  === key);
-    const count = this.props.stuff[key];
-    const removeItemClickFunction = () => {
-      this.props.removeFromStuff(key);
-    };
-
-    return (
-      <li className="item col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <img src={item.itemImage} alt={item.itemName} className="item-image"/>
-            <div>
-              <h3>{item.itemName}</h3>
-              <p>{item.itemDescription}</p>
-            </div>
-          </div>
-          <div className="panel-footer">
-            <button
-              className="btn btn-default remove-btn"
-              onClick={this.removeItemClickFunction}
-            >
-              Claim
-            </button>
-          </div>
-        </div>
-      </li>
-    )
-  };
   render () {
-    const myStuffComponents = this.state.myStuff.map((stuff) => {
-
-    })
+    const myStuffComponents = this.state.myStuff.map((aThing) => {
+      return (
+        <Item
+          key={aThing.id}
+          details={aThing}
+        />
+      );
+    });
     return (
-      <div>My Stuff
+      <div className="myStuff">
+        <h1>My Stuff</h1>
+        <ul>
+          {myStuffComponents}
+        </ul>
+        <button className="btn btn-default" onClick={this.saveMyStuff}>Save Things</button>
       </div>
     );
   }
-}
+};
 
-export default MyStuff;
+export default AllMyStuff;

@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar/Navbar';
 import fbConnection from '../firebaseRequests/connection';
 import Home from '../components/Home/Home';
 import MyStuff from '../components/MyStuff/MyStuff';
+import AddItem from '../components/AddItem/AddItem';
 import Register from '../components/Register/Register';
 import Login from '../components/Login/Login';
 import './App.css';
@@ -84,6 +85,11 @@ class App extends React.Component {
                   path="/myStuff"
                   authed={this.state.authed}
                   component={MyStuff}
+                />
+                <PrivateRoute
+                  path="/AddItem"
+                  authed={this.state.authed}
+                  component={AddItem}
                 />
                 <PrivateRoute
                   path="/AllTheThings"

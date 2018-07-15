@@ -6,6 +6,10 @@ import Item from '../Item/Item';
 class AllTheThings extends React.Component {
   state = {
     items: [],
+    myStuff: {
+      uid: '',
+      items: {},
+    },
   }
 
   componentDidMount () {
@@ -25,6 +29,7 @@ class AllTheThings extends React.Component {
         <Item
           key={item.id}
           details={item}
+          addToHovel={this.addToHovel}
         />
       );
     });
