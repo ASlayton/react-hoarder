@@ -4,15 +4,15 @@ import './Item.css';
 class Item extends React.Component {
 
   addClickEvent = () => {
-    this.props.addToHovel(this.props.details.id);
+    this.props.addToMyStuff(this.props.details);
   };
 
   render () {
     const {details} = this.props;
     return (
       <li className="item col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-body">
+        <div className="panel panel-default">
+          <div className="panel-body">
             <img src={details.itemImage} alt={details.itemName} className="item-image"/>
             <div>
               <h3>{details.itemName}</h3>

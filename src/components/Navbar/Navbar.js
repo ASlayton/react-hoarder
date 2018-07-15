@@ -32,7 +32,10 @@ class Navbar extends React.Component {
                       <Link to="/allTheThings">ALL THE THINGS!</Link>
                     </li>
                     <li>
-                      <Link to="/myStuff">My Stuff</Link>
+                      <Link to="/AddItem">Claim Stuff</Link>
+                    </li>
+                    <li>
+                      <Link to="/myStuff">MY STUFF</Link>
                     </li>
                     <li className="navbar-form">
                       <button
